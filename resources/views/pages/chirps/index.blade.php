@@ -22,6 +22,9 @@
                                 <span class="d-gray-800">{{ $comment->user->name }}</span>
                                 <small class="ml-2 text-sm text-gray-600">{{ $comment->created_at->format('j M Y, g:i a') }}</small>
                             </div>
+                            @unless ($comment->created_at->eq($comment->updated_at))
+                                <small class="text-sm text-gray-600">{{ __('edited') }}</small>
+                            @endunless
                         </div>
                         <p class="mt-4 text-lg text-gray-900">{{ $comment->message }}</p>
                     </div>
