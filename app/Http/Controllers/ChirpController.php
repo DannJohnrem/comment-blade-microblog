@@ -17,7 +17,7 @@ class ChirpController extends Controller
 
         // dd(Chirp::with('user')->latest()->get());
 
-        return view('pages.chirps.index',[
+        return view('pages.comment.index',[
             "chirps" => Chirp::with('user')
                             ->latest()
                             ->get(),
