@@ -19,9 +19,9 @@ class ChirpController extends Controller
         // dd(Chirp::with('user')->latest()->get());
 
         return view('pages.comment.index',[
-            "chirps" => Chirp::with('user')
+            "comments" => Chirp::with('user')
                             ->latest()
-                            ->get(),
+                            ->paginate(3),
         ]);
 
     }
@@ -45,7 +45,7 @@ class ChirpController extends Controller
 
         $request->user()->chirps()->create($validate);
 
-        return redirect(route('chirps.index'));
+        return redirect(route('comment.index'));
     }
 
     /**
@@ -61,6 +61,8 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp): View
     {
+        Gate::authorize('update', $chirp);
+
         return view('pages.comment.edit', [
             'comment' => $chirp,
         ]);
@@ -79,7 +81,7 @@ class ChirpController extends Controller
 
         $chirp->update($validated);
 
-        return redirect()->route('chirp.index');
+        return redirect()->route('comment.index');
     }
 
     /**

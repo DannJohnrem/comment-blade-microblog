@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('chirps.store') }}">
+        <form method="POST" action="{{ route('comment.store') }}">
             @csrf
 
             <textarea name="message" id="Message" placeholder="{{ __('What\'s on your mind?') }}"
@@ -10,7 +10,7 @@
         </form>
 
         <div class="mt-6 bg-white divide-y rounded-lg shadow-sm">
-            @foreach($chirps as $comment)
+            @foreach($comments as $comment)
                 <div class="flex p-6 space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600 -scale-x-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -33,7 +33,7 @@
                                         </svg>
                                     </x-slot>
                                     <x-slot name="content">
-                                        <x-dropdown-link :href="route('chirps.edit', $comment)">
+                                        <x-dropdown-link :href="route('comment.edit', $comment)">
                                             {{ __('Edit') }}
                                         </x-dropdown-link>
                                     </x-slot>
@@ -44,6 +44,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="mt-4 pagination">
+            {{ $comments->links() }}
         </div>
     </div>
 </x-app-layout>
