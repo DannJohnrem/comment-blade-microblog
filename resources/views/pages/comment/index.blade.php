@@ -25,10 +25,19 @@
                                     <small class="text-sm text-gray-600">{{ __('edited') }}</small>
                                 @endunless
                             </div>
-                            @if ($comment->user->as(auth()->user()))
-                                <div>
-
-                                </div>
+                            @if ($comment->user->is(auth()->user()))
+                                <x-dropdown>
+                                    <x-slot name="trigger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                        </svg>
+                                    </x-slot>
+                                    <x-slot name="content">
+                                        <x-dropdown-link :href="route('chirps.edit', $comment)">
+                                            {{ __('Edit') }}
+                                        </x-dropdown-link>
+                                    </x-slot>
+                                </x-dropdown>
                             @endif
                         </div>
                         <p class="mt-4 text-lg text-gray-900">{{ $comment->message }}</p>
