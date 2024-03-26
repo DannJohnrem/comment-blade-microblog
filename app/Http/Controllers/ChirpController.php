@@ -51,7 +51,7 @@ class ChirpController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Chirp $chirp)
+    public function show(Chirp $comment)
     {
         //
     }
@@ -59,27 +59,28 @@ class ChirpController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chirp $chirp): View
+    public function edit(Chirp $comment): View
     {
-        Gate::authorize('update', $chirp);
+        Gate::authorize('update', $comment);
+
 
         return view('pages.comment.edit', [
-            'comment' => $chirp,
+            'comment' => $comment,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chirp $chirp): RedirectResponse
+    public function update(Request $request, Chirp $comment): RedirectResponse
     {
-        Gate::authorize('update', $chirp);
+        Gate::authorize('update', $comment);
 
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
 
-        $chirp->update($validated);
+        $comment->update($validated);
 
         return redirect()->route('comment.index');
     }
@@ -87,7 +88,7 @@ class ChirpController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chirp $chirp)
+    public function destroy(Chirp $comment)
     {
         //
     }
