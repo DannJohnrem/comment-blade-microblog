@@ -44,8 +44,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function chirps(): HasMany
+    public function comments(): HasMany
     {
-        return $this->hasMany(Chirp::class);
+        return $this->hasMany(Comment::class);
     }
 }
