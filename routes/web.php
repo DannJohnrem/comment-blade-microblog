@@ -33,7 +33,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-Route::middleware(['guest'])->group(function () {
-    require __DIR__.'/auth.php';
-});
+require __DIR__.'/auth.php';
+
 
