@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chirp;
+use App\Models\Comment;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 
-class ChirpController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
-
         // dd(Chirp::with('user')->latest()->get());
 
         return view('pages.comment.index',[
-            "comments" => Chirp::with('user')
+            "comments" => Comment::with('user')
                             ->latest()
                             ->paginate(3),
         ]);
-
     }
 
     /**
@@ -51,7 +49,7 @@ class ChirpController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Chirp $comment)
+    public function show(Comment $comment)
     {
         //
     }
@@ -59,7 +57,7 @@ class ChirpController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chirp $comment): View
+    public function edit(Comment $comment): View
     {
         Gate::authorize('update', $comment);
 
@@ -72,7 +70,7 @@ class ChirpController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chirp $comment): RedirectResponse
+    public function update(Request $request, Comment $comment): RedirectResponse
     {
         Gate::authorize('update', $comment);
 
@@ -88,7 +86,7 @@ class ChirpController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chirp $comment)
+    public function destroy(Comment $comment)
     {
         //
     }
