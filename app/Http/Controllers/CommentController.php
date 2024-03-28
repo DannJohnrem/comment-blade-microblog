@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Pages\StoreCommentRequest;
+use App\Http\Requests\Pages\UpdateCommentRequest;
 use App\Models\Comment;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -35,13 +37,9 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreCommentRequest $request): RedirectResponse
     {
-        $validate = $request->validate([
-            'message' => 'required|string|max:255',
-        ]);
-
-        $request->user()->chirps()->create($validate);
+        $request->user()->comments()->create($request->validated());
 
         return redirect(route('comment.index'));
     }
@@ -70,15 +68,11 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comment $comment): RedirectResponse
+    public function update(UpdateCommentRequest $request, Comment $comment): RedirectResponse
     {
         Gate::authorize('update', $comment);
 
-        $validated = $request->validate([
-            'message' => 'required|string|max:255',
-        ]);
-
-        $comment->update($validated);
+        $comment->update($request->validated());
 
         return redirect()->route('comment.index');
     }
