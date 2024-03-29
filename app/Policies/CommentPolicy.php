@@ -36,11 +36,13 @@ class CommentPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Comment $comment): bool
+    public function update(User $user, Comment $comment): Response
     {
         // Log::info('Checking policy for user: '.$user->id.' and comment: '.$comment->user_id);
         // dd($user, $comment);
-        return $comment->user()->is($user);
+        return $comment->user()->is($user)
+            ? Response::allow()
+            : Response::deny('You don\'t own this comment');
     }
 
     /**
