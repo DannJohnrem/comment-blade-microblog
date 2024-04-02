@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Pages\StoreCommentRequest;
-use App\Http\Requests\Pages\UpdateCommentRequest;
+use Carbon\Carbon;
 use App\Models\Comment;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Pages\StoreCommentRequest;
+use App\Http\Requests\Pages\UpdateCommentRequest;
 
 class CommentController extends Controller
 {
@@ -18,6 +19,9 @@ class CommentController extends Controller
     public function index(): View
     {
         // dd(Chirp::with('user')->latest()->get());
+
+        // Carbon::setLocale('en');
+        // Carbon::setTimezone('Asia/Manila');
 
         return view('pages.comment.index',[
             "comments" => Comment::with('user')
@@ -80,8 +84,12 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment): RedirectResponse
     {
-        //
+        Gate::authorize('delete', $comment);
+
+        $comment->delete();
+
+        return redirect(route('comment.index'));
     }
 }

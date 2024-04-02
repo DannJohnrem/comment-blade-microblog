@@ -28,12 +28,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('comment', CommentController::class)->only(['index', 'store', 'edit', 'update']);
+    Route::resource('comment', CommentController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
 });
 
 
 
-Route::middleware(['guest'])->group(function () {
-    require __DIR__.'/auth.php';
-});
-
+require __DIR__ . '/auth.php';
