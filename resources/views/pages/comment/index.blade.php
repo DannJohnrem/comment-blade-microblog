@@ -20,7 +20,8 @@
                             <div>
                                 {{-- <span class="d-gray-800">{{ optional($comment->users)->name }}</span> --}}
                                 <span class="d-gray-800">{{ $comment->user->name }}</span>
-                                <small class="ml-2 text-sm text-gray-600">{{ $comment->created_at->format('j M Y, g:i a') }}</small>
+                                <small class="ml-2 text-sm text-gray-600">{{ $comment->created_at->format('M, j Y') }}</small>
+                                <small class="ml-2 text-sm text-gray-600">{{ $comment->created_at->diffForHumans() }}</small>
                                 @unless ($comment->created_at->eq($comment->updated_at))
                                     <small class="text-sm text-gray-600">{{ __('edited') }}</small>
                                 @endunless
@@ -36,6 +37,13 @@
                                         <x-dropdown-link :href="route('comment.edit', $comment)">
                                             {{ __('Edit') }}
                                         </x-dropdown-link>
+                                        <form method="POST" action="{{ route('comment.destroy', $comment) }}">
+                                            @csrf
+                                            @method('delete')
+                                            <x-dropdown-link :href="route('comment.destroy', $comment)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                {{ __('Delete') }}
+                                            </x-dropdown-link>
+                                        </form>
                                     </x-slot>
                                 </x-dropdown>
                             @endif

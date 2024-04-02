@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Pages\StoreCommentRequest;
-use App\Http\Requests\Pages\UpdateCommentRequest;
+use Carbon\Carbon;
 use App\Models\Comment;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Pages\StoreCommentRequest;
+use App\Http\Requests\Pages\UpdateCommentRequest;
 
 class CommentController extends Controller
 {
@@ -18,6 +19,9 @@ class CommentController extends Controller
     public function index(): View
     {
         // dd(Chirp::with('user')->latest()->get());
+
+        // Carbon::setLocale('en');
+        // Carbon::setTimezone('Asia/Manila');
 
         return view('pages.comment.index',[
             "comments" => Comment::with('user')
