@@ -54,7 +54,7 @@
             @endforeach
         </div>
         <div class="mt-4 pagination">
-            {{ $comments->links() }}
+            {{ $comments->links('vendor.pagination.tailwind') }}
         </div>
     </div>
 </x-app-layout>

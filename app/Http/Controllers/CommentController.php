@@ -28,6 +28,7 @@ class CommentController extends Controller
                             ->latest()
                             ->paginate(3),
         ]);
+
     }
 
     /**
