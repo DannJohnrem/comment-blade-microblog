@@ -37,6 +37,7 @@ Ensure you have the following installed:
    npm install
    ```
 3. **Environment Configuration**
+
    Create a `.env` file by copying the `.env.example`:
    
    ```bash
@@ -54,7 +55,8 @@ Ensure you have the following installed:
     DB_PASSWORD=your_password
    ```
 4. **Generate Application Key**
-    ```bash
+
+   ```bash
     php artisan migrate
     ```
     or if you're using laravel sail with wsl:
