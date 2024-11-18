@@ -29,55 +29,55 @@ Ensure you have the following installed:
    ```
 2. **Install Dependencies**
    ```bash
-       composer install
+   composer install
    ```
    and
    
    ```bash
-       npm install
+   npm install
    ```
 3. **Environment Configuration**
    Create a `.env` file by copying the `.env.example`:
    
    ```bash
-       cp .env.example .env
+   cp .env.example .env
    ```
 
    Update the `.env` file with your database credentials and other configurations:
 
     ```bash
-        DB_CONNECTION=mysql
-        DB_HOST=127.0.0.1
-        DB_PORT=3306
-        DB_DATABASE=your_database_name
-        DB_USERNAME=your_username
-        DB_PASSWORD=your_password
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_database_name
+    DB_USERNAME=your_username
+    DB_PASSWORD=your_password
    ```
 4. **Generate Application Key**
     ```bash
-        php artisan migrate
+    php artisan migrate
     ```
     or if you're using laravel sail with wsl:
 
    ```bash
-        ./vendor/bin/sail artisan migrate
+   ./vendor/bin/sail artisan migrate
    ```    
 
 6. **Run Migrations and Seeders**
     ```bash
-        php artisan migrate --seed
+    php artisan migrate --seed
     ```
     or if you're using laravel sail with wsl:
 
    ```bash
-        ./vendor/bin/sail artisan migrate --seed
+   ./vendor/bin/sail artisan migrate --seed
    ```    
 
 7. **Build Frontend Assets**
     Compile the frontend assets:
    
     ```bash
-        npm run dev
+    npm run dev
     ```
 
 9. **Run the Development Server**
