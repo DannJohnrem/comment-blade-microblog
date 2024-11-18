@@ -65,8 +65,9 @@ Ensure you have the following installed:
    ./vendor/bin/sail artisan migrate
    ```    
 
-6. **Run Migrations and Seeders**
-    ```bash
+5. **Run Migrations and Seeders**
+
+   ```bash
     php artisan migrate --seed
     ```
     or if you're using laravel sail with wsl:
@@ -75,14 +76,16 @@ Ensure you have the following installed:
    ./vendor/bin/sail artisan migrate --seed
    ```    
 
-7. **Build Frontend Assets**
-    Compile the frontend assets:
+6. **Build Frontend Assets**
+
+   Compile the frontend assets:
    
     ```bash
     npm run dev
     ```
 
-9. **Run the Development Server**
+7. **Run the Development Server**
+
    - if you're using docker just run the container or you can run command `sail up`.
    - and if herd just run the services provided by herd
    - `php artisan serve` if you want the laravel serve the localhost
